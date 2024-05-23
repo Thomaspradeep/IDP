@@ -1,4 +1,9 @@
 inputSet:
+  name: runtime_input
+  tags: {}
+  identifier: runtime_input
+  orgIdentifier: default
+  projectIdentifier: Terraform
   pipeline:
     identifier: IDPTest
     stages:
@@ -8,7 +13,7 @@ inputSet:
           variables:
             - name: name
               type: String
-              value: harness
+              value: harness_pipeline
             - name: Project
               type: String
               value: IDP
@@ -23,10 +28,6 @@ inputSet:
       ci:
         codebase:
           build:
+            type: branch
             spec:
               branch: develop
-            type: branch
-  name: runtime_input
-  identifier: runtime_input
-  orgIdentifier: default
-  projectIdentifier: Terraform
