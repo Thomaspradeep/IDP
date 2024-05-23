@@ -15,7 +15,7 @@ pipeline:
             steps:
               - step:
                   type: ShellScript
-                  name: ShellScript_1
+                  name: prestep
                   identifier: ShellScript_1
                   spec:
                     shell: Bash
