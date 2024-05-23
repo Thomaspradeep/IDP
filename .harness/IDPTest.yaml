@@ -38,6 +38,33 @@ pipeline:
             description: ""
             required: true
             value: <+input>
+    - stage:
+        name: custom
+        identifier: custom
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: Http
+                  name: Http_1
+                  identifier: Http_1
+                  spec:
+                    url: https://www.deluxe.com
+                    method: GET
+                    headers: []
+                    inputVariables: []
+                    outputVariables: []
+                    requestBody: test
+                  timeout: 10s
+        tags: {}
+        variables:
+          - name: Account
+            type: String
+            description: ""
+            required: true
+            value: <+input>
   properties:
     ci:
       codebase:
