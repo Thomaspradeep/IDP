@@ -32,7 +32,7 @@ pipeline:
             type: String
             description: ""
             required: false
-            value: Harness
+            value: <+input>
   properties:
     ci:
       codebase:
