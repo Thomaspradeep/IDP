@@ -9,28 +9,33 @@ pipeline:
         name: Build
         identifier: Build
         description: ""
-        type: Custom
+        type: CI
         spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
           execution:
             steps:
               - step:
-                  type: ShellScript
-                  name: prestep
-                  identifier: ShellScript_1
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
                   spec:
-                    shell: Bash
-                    executionTarget: {}
-                    source:
-                      type: Inline
-                      spec:
-                        script: echo <+stage.variables.name>
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
-        tags: {}
+                    shell: Sh
+                    command: echo <+stage.variables.name>
         variables:
           - name: name
             type: String
             description: ""
-            required: true
+            required: false
             value: Harness
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github_OAuth_1697453905706
+        repoName: Thomaspradeep/IDP
+        build: <+input>
