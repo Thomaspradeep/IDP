@@ -1,0 +1,32 @@
+inputSet:
+  pipeline:
+    identifier: IDPTest
+    stages:
+      - stage:
+          identifier: Build
+          type: CI
+          variables:
+            - name: name
+              type: String
+              value: harness
+            - name: Project
+              type: String
+              value: IDP
+      - stage:
+          identifier: custom
+          type: Custom
+          variables:
+            - name: Account
+              type: String
+              value: deluxe
+    properties:
+      ci:
+        codebase:
+          build:
+            spec:
+              branch: develop
+            type: branch
+  name: runtime_input
+  identifier: runtime_input
+  orgIdentifier: default
+  projectIdentifier: Terraform
