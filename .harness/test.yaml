@@ -17,6 +17,13 @@ inputSet:
             - name: Project
               type: String
               value: <+input>
+      - stage:
+          identifier: custom
+          type: Custom
+          variables:
+            - name: Account
+              type: String
+              value: <+input>
     properties:
       ci:
         codebase:
