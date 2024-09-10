@@ -1,0 +1,52 @@
+template:
+  name: mytemplate
+  type: Stage
+  projectIdentifier: CD
+  orgIdentifier: default
+  spec:
+    type: Deployment
+    spec:
+      deploymentType: NativeHelm
+      service:
+        serviceRef: helmservice
+        serviceInputs:
+          serviceDefinition:
+            type: NativeHelm
+            spec:
+              configFiles:
+                - configFile:
+                    identifier: Configfile
+                    spec:
+                      store:
+                        type: Github
+                        spec:
+                          branch: <+input>
+      environment:
+        environmentRef: Preprod
+        deployToAll: false
+        infrastructureDefinitions:
+          - identifier: myinfra
+      execution:
+        steps:
+          - step:
+              name: Helm Deployment
+              identifier: helmDeployment
+              type: HelmDeploy
+              timeout: 10m
+              spec:
+                skipDryRun: false
+        rollbackSteps:
+          - step:
+              name: Helm Rollback
+              identifier: helmRollback
+              type: HelmRollback
+              timeout: 10m
+              spec: {}
+    failureStrategies:
+      - onFailure:
+          errors:
+            - AllErrors
+          action:
+            type: StageRollback
+  identifier: mytemplate
+  versionLabel: 1.0.0
